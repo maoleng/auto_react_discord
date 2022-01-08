@@ -1,7 +1,7 @@
 
 
 <h1>
-	auto react discord message
+	Auto react discord message
 </h1>
 
 <hr>
