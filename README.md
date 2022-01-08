@@ -16,10 +16,13 @@
 		How to use:
 		<ul>
 			<li>
-				 Install <a href = "https://www.postman.com/" target="_blank"> Post Man </a> to set request header. Then follow like below ⬇️
+				 Install <a href = "https://www.postman.com/" target="_blank"> Post Man </a> to set request header
 			</li>
 			<li>
 				Create an application and <a href = "https://discord.com/developers/applications" target="_blank"> get bot-code</a> to replace in source
+			</li>
+			<li>
+				Follow like below ⬇️
 			</li>
 		</ul>
 	</li>
