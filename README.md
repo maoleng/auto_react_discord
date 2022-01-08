@@ -13,8 +13,8 @@
 		Description: Use HTTP Request and Discord API
 	</li>
 	<li>
+		How to use:
 		<ul>
-			How to use:
 			<li>
 				 Install <a href = "https://www.postman.com/" target="_blank"> Post Man </a> to set request header. Then follow like below ⬇️
 			</li>
