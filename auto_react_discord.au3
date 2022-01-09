@@ -91,6 +91,8 @@ Global $form = GUICreate("Tự động gửi emoji", 720, 438, -1, -1)
 Global $menu_extension = GUICtrlCreateMenu("Tiện ích")
 Global $menu_extension_download_post_man = GUICtrlCreateMenuItem("Tải Post Man", $menu_extension)
 Global $menu_extension_create_bot_discord= GUICtrlCreateMenuItem("Tạo bot discord", $menu_extension)
+Global $menu_extension_line = GUICtrlCreateMenuItem("", $menu_extension)
+Global $menu_extension_change_token = GUICtrlCreateMenuItem("Đổi token bot discord", $menu_extension)
 Global $menu_document = GUICtrlCreateMenu("Hướng dẫn")
 Global $menu_document_get_bot_token = GUICtrlCreateMenuItem("Hướng dẫn lấy token bot discord", $menu_document)
 Global $menu_document_add_bot_to_sever = GUICtrlCreateMenuItem("Hướng dẫn thêm bot vào sever", $menu_document)
@@ -119,14 +121,26 @@ While 1
 		Case $menu_extension_create_bot_discord
 			ShellExecute("https://discord.com/developers/applications/")
 
+		Case $menu_extension_change_token
+			$new_token = InputBox("Thay token của bot discord", "Dán token vào đây")
+			if @error == 1 Then
+				ContinueLoop
+			ElseIf @error == 0 Then
+				MsgBox(48 + 262144, "Lỗi", "Token không được để trống")
+				ContinueLoop
+			EndIf
+			$bot_token = $new_token
+			MsgBox(48 + 262144, "Thông báo", "Đã đổi token bot")
+			MsgBox(0,0, $bot_token)
+
 		Case $menu_document_get_bot_token
-			MsgBox(0, 'Hướng dẫn', 'Lấy token của bot tại https://discord.com/developers/applications/' & @CRLF & 'Đầu tiên tạo 1 con bot: ' & @CRLF & '1. Ấn vào nút New Applications ở góc phải bên trên để tạo' & @CRLF & '2. Ấn vào cái vừa tạo, chọn mục Bot ở menu bên trái' & @CRLF & '3. Copy Token của bot ở mục Built-A-Bot')
+			MsgBox(0 + 262144, 'Hướng dẫn', 'Lấy token của bot tại https://discord.com/developers/applications/' & @CRLF & 'Đầu tiên tạo 1 con bot: ' & @CRLF & '1. Ấn vào nút New Applications ở góc phải bên trên để tạo' & @CRLF & '2. Ấn vào cái vừa tạo, chọn mục Bot ở menu bên trái' & @CRLF & '3. Copy Token của bot ở mục Built-A-Bot')
 
 		Case $menu_document_add_bot_to_sever
-			MsgBox(0, 'Hướng dẫn', 'Thêm bot vào sever tại https://discord.com/developers/applications' & @CRLF & '1. Chọn Application của bạn' & @CRLF & '2. Chọn OAuth2 ở menu bên trái, sau đó chọn URL' & @CRLF & '3. Tick vào ô bot ở mục SCOPES, sau đó tick vào các quyền mà bạn muốn bot bạn có' & @CRLF & '5. Copy link ở phía bên dưới và mở ở tab mới')
+			MsgBox(0 + 262144, 'Hướng dẫn', 'Thêm bot vào sever tại https://discord.com/developers/applications' & @CRLF & '1. Chọn Application của bạn' & @CRLF & '2. Chọn OAuth2 ở menu bên trái, sau đó chọn URL' & @CRLF & '3. Tick vào ô bot ở mục SCOPES, sau đó tick vào các quyền mà bạn muốn bot bạn có' & @CRLF & '5. Copy link ở phía bên dưới và mở ở tab mới')
 
 		Case $menu_about_me
-			MsgBox(0, 'Tác giả', 'Sản phẩm được viết bởi Mao Leng' & @CRLF & @CRLF & 'Sử dụng truy vấn HTTP qua WinHTTPRequest và API Discord' & @CRLF & @CRLF &'Liên hệ qua Mao Leng#2843')
+			MsgBox(0 + 262144, 'Tác giả', 'Sản phẩm được viết bởi Mao Leng' & @CRLF & @CRLF & 'Sử dụng truy vấn HTTP qua WinHTTPRequest và API Discord' & @CRLF & @CRLF &'Liên hệ qua Mao Leng#2843')
 
 		Case $button_send
 			$content = GUICtrlRead($input_content)
@@ -153,7 +167,7 @@ While 1
 					MsgBox(16 + 262144, 'Thất bại', 'Chưa cài đặt Post Man' & @CRLF & 'Tải Post Man tại https://www.postman.com/downloads/')
 					ExitLoop
 				ElseIf $response == '{"message": "401: Unauthorized", "code": 0}' Then
-					MsgBox(16 + 262144, 'Thất bại', 'Sai token của bot' & @CRLF & 'Lấy token của bot tại https://discord.com/developers/applications/' & @CRLF & 'Các bước tạo 1 con bot: ' & @CRLF & '1. Ấn vào nút New Applications ở góc phải bên trên để tạo' & @CRLF & '2. Ấn vào cái vừa tạo, chọn mục Bot ở menu bên trái' & @CRLF & '3. Copy Token của bot ở mục Built-A-Bot')
+					MsgBox(16 + 262144, 'Thất bại', 'Sai token của bot')
 					ExitLoop
 				ElseIf $response == '{"message": "Missing Access", "code": 50001}' Then
 					MsgBox(16 + 262144, 'Thất bại', 'Chưa thêm bot vào sever hoặc chưa cho quyền cho bot')
